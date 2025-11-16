@@ -43,7 +43,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_ESCAPE, MT(MOD_LGUI, KC_A),MT(MOD_LALT, KC_R),MT(MOD_LCTL, KC_S),MT(MOD_LSFT, KC_T), LT(2, KC_D), KC_INSERT, KC_NO, KC_H, MT(MOD_RSFT, KC_N),MT(MOD_RCTL, KC_E),MT(MOD_RALT, KC_I),MT(MOD_RGUI, KC_O),KC_MINUS,
     KC_LEFT_SHIFT, KC_Z, KC_X, KC_C, KC_V, KC_B, KC_K, KC_M, KC_COMMA, KC_DOT, KC_QUOTE, KC_RIGHT_SHIFT,
     MO(1), PIPE_GRAVE, KC_CAPS, KC_LEFT, KC_RIGHT, KC_LEFT_ALT, KC_LEFT_CTRL, KC_UP, KC_DOWN, KC_SLASH, AT_CARET, MO(1),
-    KC_BSPC, KC_DELETE, KC_NO, TO(3), KC_ENTER, KC_SPACE
+    KC_BSPC, KC_DELETE, TO(3), KC_NO, KC_ENTER, KC_SPACE
   ),
   [1] = LAYOUT_moonlander( // Function layout
     KC_F1, KC_F2, KC_F3, KC_F4, KC_F5, KC_F6, KC_NO, KC_NO, KC_F7, KC_F8, KC_F9, KC_F10, KC_F11, KC_F12,
@@ -67,7 +67,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_CAPS, KC_A, KC_S, KC_D, KC_F, KC_G, TD(DANCE_2), TD(DANCE_5), KC_H, KC_J, KC_K, KC_L, KC_SCLN, KC_QUOTE,
     KC_LEFT_SHIFT, KC_Z, KC_X, KC_C, KC_V, KC_B, KC_N, KC_M, KC_COMMA, KC_DOT, KC_SLASH, KC_NO,
     KC_LEFT_CTRL, KC_LEFT_GUI, KC_NO, KC_LEFT_ALT, KC_SPACE, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
-    KC_BSPC, KC_NO, KC_NO, TO(0), KC_ENTER, KC_SPACE
+    KC_BSPC, KC_NO, TO(0), KC_NO, KC_ENTER, KC_SPACE
   ),
 };
 
@@ -467,52 +467,52 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         return false;
     case PLUS_ONE:
         if (record->event.pressed) {
-            send_mod_choice(S(KC_EQUAL), KC_1);
+            send_mod_choice(KC_1, S(KC_EQUAL));
         }
         return false;
     case LSB_TWO:
         if (record->event.pressed) {
-            send_mod_choice(KC_LEFT_BRACKET, KC_2);
+            send_mod_choice(KC_2, KC_LEFT_BRACKET);
         }
         return false;
     case LCB_THREE:
         if (record->event.pressed) {
-            send_mod_choice(S(KC_LEFT_BRACKET), KC_3);
+            send_mod_choice(KC_3, S(KC_LEFT_BRACKET));
         }
         return false;
     case LP_FOUR:
         if (record->event.pressed) {
-            send_mod_choice(S(KC_9), KC_4);
+            send_mod_choice(KC_4, S(KC_9));
         }
         return false;
     case AMPERSAND_FIVE:
         if (record->event.pressed) {
-            send_mod_choice(S(KC_7), KC_5);
+            send_mod_choice(KC_5, S(KC_7));
         }
         return false;
     case EQUAL_SIX:
         if (record->event.pressed) {
-            send_mod_choice(KC_EQUAL, KC_6);
+            send_mod_choice(KC_6, KC_EQUAL);
         }
         return false;
     case RP_SEVEN:
         if (record->event.pressed) {
-            send_mod_choice(S(KC_0), KC_7);
+            send_mod_choice(KC_7, S(KC_0));
         }
         return false;
     case RCB_EIGHT:
         if (record->event.pressed) {
-            send_mod_choice(S(KC_RIGHT_BRACKET), KC_8);
+            send_mod_choice(KC_8, S(KC_RIGHT_BRACKET));
         }
         return false;
     case RSB_NINE:
         if (record->event.pressed) {
-            send_mod_choice(KC_RIGHT_BRACKET, KC_9);
+            send_mod_choice(KC_9, KC_RIGHT_BRACKET);
         }
         return false;
     case ASTERISK_ZERO:
         if (record->event.pressed) {
-            send_mod_choice(S(KC_8), KC_0);
+            send_mod_choice(KC_0, S(KC_8));
         }
         return false;
     case EXCLAMATION_PERCENT:

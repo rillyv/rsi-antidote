@@ -1,0 +1,216 @@
+/*
+ * Glove80 ZMK Keymap - Colemak with Home Row Mods
+ *
+ * Layers:
+ *   0: Base (Colemak with home row mods)
+ *   1: Keypad/Numpad
+ */
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/ext_power.h>
+#include <dt-bindings/zmk/outputs.h>
+
+#define BASE 0
+#define KEYPAD 1
+
+// Home row mod settings
+#define TAPPING_TERM 200
+#define QUICK_TAP 150
+
+/ {
+    behaviors {
+        // Home row mods - balanced flavor for better typing
+        hml: home_row_mod_left {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <TAPPING_TERM>;
+            quick-tap-ms = <QUICK_TAP>;
+            flavor = "balanced";
+            bindings = <&kp>, <&kp>;
+            hold-trigger-key-positions = <6 7 8 9 10 11 18 19 20 21 22 23 30 31 32 33 34 35 43 44 45 46 47 48 49 55 56 57 58 59 63 64 65 66 67 75 76 77 78 79>;
+            hold-trigger-on-release;
+        };
+
+        hmr: home_row_mod_right {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <TAPPING_TERM>;
+            quick-tap-ms = <QUICK_TAP>;
+            flavor = "balanced";
+            bindings = <&kp>, <&kp>;
+            hold-trigger-key-positions = <0 1 2 3 4 5 12 13 14 15 16 17 24 25 26 27 28 29 36 37 38 39 40 41 42 50 51 52 53 54 60 61 62 68 69 70 71 72 73 74>;
+            hold-trigger-on-release;
+        };
+
+        // Layer tap for D key -> Keypad layer
+        ltd: layer_tap_d {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <TAPPING_TERM>;
+            quick-tap-ms = <QUICK_TAP>;
+            flavor = "balanced";
+            bindings = <&mo>, <&kp>;
+        };
+
+        // Mod-morph behaviors for custom symbol keys
+        // Format: unshifted / shifted
+
+        // | (pipe) / ` (grave)
+        mm_pipe_grave: mod_morph_pipe_grave {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp PIPE>, <&kp GRAVE>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        // 1 / + (plus)
+        mm_1_plus: mod_morph_1_plus {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp N1>, <&kp PLUS>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        // 2 / [ (left bracket)
+        mm_2_lbkt: mod_morph_2_lbkt {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp N2>, <&kp LBKT>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        // 3 / { (left brace)
+        mm_3_lbrc: mod_morph_3_lbrc {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp N3>, <&kp LBRC>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        // 4 / ( (left paren)
+        mm_4_lpar: mod_morph_4_lpar {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp N4>, <&kp LPAR>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        // 5 / & (ampersand)
+        mm_5_amps: mod_morph_5_amps {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp N5>, <&kp AMPS>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        // 6 / = (equal)
+        mm_6_equal: mod_morph_6_equal {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp N6>, <&kp EQUAL>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        // 7 / ) (right paren)
+        mm_7_rpar: mod_morph_7_rpar {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp N7>, <&kp RPAR>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        // 8 / } (right brace)
+        mm_8_rbrc: mod_morph_8_rbrc {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp N8>, <&kp RBRC>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        // 9 / ] (right bracket)
+        mm_9_rbkt: mod_morph_9_rbkt {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp N9>, <&kp RBKT>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        // 0 / * (asterisk)
+        mm_0_star: mod_morph_0_star {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp N0>, <&kp ASTRK>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        // ! / % (exclamation / percent)
+        mm_excl_prcnt: mod_morph_excl_prcnt {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp EXCL>, <&kp PRCNT>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        // \ / # (backslash / hash)
+        mm_bslh_hash: mod_morph_bslh_hash {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp BSLH>, <&kp HASH>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        // $ / ~ (dollar / tilde)
+        mm_dllr_tilde: mod_morph_dllr_tilde {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp DLLR>, <&kp TILDE>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        // @ / ^ (at / caret)
+        mm_at_caret: mod_morph_at_caret {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp AT>, <&kp CARET>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+    };
+
+    keymap {
+        compatible = "zmk,keymap";
+
+        base_layer {
+            /*
+             * ╭─────────────────────────────────────────╮                                         ╭─────────────────────────────────────────╮
+             * │  F1  │  F2  │  F3  │  F4  │  F5  │      │                                         │      │  F6  │  F7  │  F8  │  F9  │ F10  │
+             * │  $~  │  1+  │  2[  │  3{  │  4(  │  5&  │                                         │  6=  │  7)  │  8}  │  9]  │  0*  │  !%  │
+             * │ TAB  │  Q   │  W   │  F   │  P   │  G   │                                         │  J   │  L   │  U   │  Y   │  ;   │  \#  │
+             * │ ESC  │A/GUI │R/ALT │S/CTL │T/SFT │ D/L1 │                                         │  H   │N/SFT │E/CTL │I/ALT │O/GUI │  -   │
+             * │SHIFT │  Z   │  X   │  C   │  V   │  B   │ LCTL │ LALT │ LGUI │ RGUI │ RALT │ RCTL │  K   │  M   │  ,   │  .   │  '   │SHIFT │
+             * │ PRSC │  |`  │ CAPS │  ←   │  →   │      │ BSPC │ DEL  │ HOME │ END  │ RET  │ SPC  │      │  ↑   │  ↓   │  /   │  @^  │CAPSW │
+             * ╰─────────────────────────────────────────╯                                         ╰─────────────────────────────────────────╯
+             */
+            bindings = <
+                &kp F1          &kp F2          &kp F3          &kp F4           &kp F5                                                                                                             &kp F6           &kp F7           &kp F8          &kp F9           &kp F10
+                &mm_dllr_tilde  &mm_1_plus      &mm_2_lbkt      &mm_3_lbrc       &mm_4_lpar       &mm_5_amps                                                                           &mm_6_equal  &mm_7_rpar       &mm_8_rbrc       &mm_9_rbkt      &mm_0_star       &mm_excl_prcnt
+                &kp TAB         &kp Q           &kp W           &kp F            &kp P            &kp G                                                                                &kp J        &kp L            &kp U            &kp Y           &kp SEMI         &mm_bslh_hash
+                &kp ESC         &hml LGUI A     &hml LALT R     &hml LCTRL S     &hml LSHFT T     &ltd KEYPAD D                                                                        &kp H        &hmr RSHFT N     &hmr RCTRL E     &hmr RALT I     &hmr RGUI O      &kp MINUS
+                &kp LSHFT       &kp Z           &kp X           &kp C            &kp V            &kp B          &kp LCTRL  &kp LALT  &kp LGUI    &kp RGUI  &kp RALT  &kp RCTRL        &kp K        &kp M            &kp COMMA        &kp DOT         &kp SQT          &kp RSHFT
+                &kp PSCRN       &mm_pipe_grave  &kp CAPS        &kp LEFT         &kp RIGHT                       &kp BSPC   &kp DEL   &kp HOME    &kp END   &kp RET   &kp SPACE                     &kp UP           &kp DOWN         &kp FSLH        &mm_at_caret     &caps_word
+            >;
+        };
+
+        keypad_layer {
+            bindings = <
+                &none           &none           &none           &none            &none                                                                                                              &none            &none            &none            &none            &none
+                &none           &none           &none           &none            &none            &none                                                                            &none            &kp KP_NUM       &kp KP_EQUAL     &kp KP_SLASH     &kp KP_MULTIPLY  &none
+                &none           &none           &none           &none            &none            &none                                                                            &none            &kp KP_N7        &kp KP_N8        &kp KP_N9        &kp KP_MINUS     &none
+                &none           &none           &none           &none            &none            &trans                                                                           &none            &kp KP_N4        &kp KP_N5        &kp KP_N6        &kp KP_PLUS      &none
+                &none           &none           &none           &none            &none            &none          &none   &none   &none     &none   &none   &none                   &none            &kp KP_N1        &kp KP_N2        &kp KP_N3        &kp KP_ENTER     &none
+                &none           &none           &none           &none            &none                           &none   &none   &none     &none   &none   &kp KP_N0                                &none            &kp KP_COMMA     &kp KP_DOT       &none            &none
+            >;
+        };
+    };
+};

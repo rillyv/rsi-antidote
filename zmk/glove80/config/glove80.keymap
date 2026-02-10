@@ -16,7 +16,7 @@
 #define KEYPAD 1
 
 // Home row mod settings
-#define TAPPING_TERM 200
+#define TAPPING_TERM 175
 #define QUICK_TAP 150
 
 / {

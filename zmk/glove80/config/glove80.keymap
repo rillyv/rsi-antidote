@@ -2,7 +2,7 @@
  * Glove80 ZMK Keymap - Colemak with Home Row Mods
  *
  * Layers:
- *   0: Base (Colemak with home row mods)
+ *   0: Base (Colemak, home row mods disabled - behaviors kept for easy re-enable)
  *   1: Keypad/Numpad
  */
 
@@ -187,18 +187,18 @@
              * │  F1  │  F2  │  F3  │  F4  │  F5  │      │                                         │      │  F6  │  F7  │  F8  │  F9  │ F10  │
              * │  $~  │  1+  │  2[  │  3{  │  4(  │  5&  │                                         │  6=  │  7)  │  8}  │  9]  │  0*  │  !%  │
              * │ TAB  │  Q   │  W   │  F   │  P   │  G   │                                         │  J   │  L   │  U   │  Y   │  ;   │  \#  │
-             * │ ESC  │A/GUI │R/ALT │S/CTL │T/SFT │ D/L1 │                                         │  H   │N/SFT │E/CTL │I/ALT │O/GUI │  -   │
+             * │ ESC  │  A   │  R   │  S   │  T   │ D/L1 │                                         │  H   │  N   │  E   │  I   │  O   │  -   │
              * │SHIFT │  Z   │  X   │  C   │  V   │  B   │ LCTL │ LALT │ LGUI │ RGUI │ RALT │ RCTL │  K   │  M   │  ,   │  .   │  '   │SHIFT │
-             * │ PRSC │  |`  │ CAPS │  ←   │  →   │      │ BSPC │ DEL  │ HOME │ END  │ RET  │ SPC  │      │  ↑   │  ↓   │  /   │  @^  │CAPSW │
+             * │ PRSC │  |`  │ CAPS │  ←   │  →   │      │ BSPC │ DEL  │CAPSW │      │ RET  │ SPC  │      │  ↑   │  ↓   │  /   │  @^  │      │
              * ╰─────────────────────────────────────────╯                                         ╰─────────────────────────────────────────╯
              */
             bindings = <
                 &kp F1          &kp F2          &kp F3          &kp F4           &kp F5                                                                                                             &kp F6           &kp F7           &kp F8          &kp F9           &kp F10
                 &mm_dllr_tilde  &mm_1_plus      &mm_2_lbkt      &mm_3_lbrc       &mm_4_lpar       &mm_5_amps                                                                           &mm_6_equal  &mm_7_rpar       &mm_8_rbrc       &mm_9_rbkt      &mm_0_star       &mm_excl_prcnt
                 &kp TAB         &kp Q           &kp W           &kp F            &kp P            &kp G                                                                                &kp J        &kp L            &kp U            &kp Y           &kp SEMI         &mm_bslh_hash
-                &kp ESC         &hml LGUI A     &hml LALT R     &hml LCTRL S     &hml LSHFT T     &ltd KEYPAD D                                                                        &kp H        &hmr RSHFT N     &hmr RCTRL E     &hmr RALT I     &hmr RGUI O      &kp MINUS
+                &kp ESC         &kp A           &kp R           &kp S            &kp T            &ltd KEYPAD D                                                                        &kp H        &kp N            &kp E            &kp I           &kp O            &kp MINUS
                 &kp LSHFT       &kp Z           &kp X           &kp C            &kp V            &kp B          &kp LCTRL  &kp LALT  &kp LGUI    &kp RGUI  &kp RALT  &kp RCTRL        &kp K        &kp M            &kp COMMA        &kp DOT         &kp SQT          &kp RSHFT
-                &kp PSCRN       &mm_pipe_grave  &kp CAPS        &kp LEFT         &kp RIGHT                       &kp BSPC   &kp DEL   &kp HOME    &kp END   &kp RET   &kp SPACE                     &kp UP           &kp DOWN         &kp FSLH        &mm_at_caret     &caps_word
+                &kp PSCRN       &mm_pipe_grave  &kp CAPS        &kp LEFT         &kp RIGHT                       &kp BSPC   &kp DEL   &caps_word  &none     &kp RET   &kp SPACE                     &kp UP           &kp DOWN         &kp FSLH        &mm_at_caret     &none
             >;
         };
 
